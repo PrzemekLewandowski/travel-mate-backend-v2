@@ -8,20 +8,24 @@ import com.travelmate.viewmodel.UserViewModel;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Set;
 
+import static org.junit.jupiter.api.TestInstance.Lifecycle;
+
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
+@TestInstance(Lifecycle.PER_CLASS)
 class UserToViewModelMapperTest implements WithAssertions {
-    private static User user;
-    private static UserViewModel userViewModel;
+    private User user;
+    private UserViewModel userViewModel;
 
     @BeforeAll
-    static void setUp() {
+    void setUp() {
         user = createTestUser();
         userViewModel = UserMapper.INSTANCE.toUserViewModel(user);
     }
@@ -74,7 +78,7 @@ class UserToViewModelMapperTest implements WithAssertions {
         assertThat(user.getInfoAboutUser()).withFailMessage("Info about user is wrong").isEqualTo(userViewModel.getInfoAboutUser());
     }
 
-    private static User createTestUser() {
+    private User createTestUser() {
         User user = new User();
         user.setBornYear(1990);
         user.setCity("Chicago");

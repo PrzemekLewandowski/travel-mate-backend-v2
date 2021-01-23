@@ -56,7 +56,7 @@ public class Post extends AbstractEntity {
     @JoinColumn(name = "user_id")
     private User postedByUsername;
 
-    private String advFileName;
+    private String fileName;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Comment> comments;

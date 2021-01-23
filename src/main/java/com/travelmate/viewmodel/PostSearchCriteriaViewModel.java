@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Component
 @Data
-public class AdvertisementSearchCriteriaViewModel {
+public class PostSearchCriteriaViewModel {
 
     private Country country;
 

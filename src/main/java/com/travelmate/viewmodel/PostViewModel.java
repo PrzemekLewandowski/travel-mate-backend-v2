@@ -15,7 +15,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class AdvertisementViewModel {
+public class PostViewModel {
     @Id
     private Long id;
 
@@ -52,7 +52,7 @@ public class AdvertisementViewModel {
 
     private String username;
 
-    private String advFileName;
+    private String fileName;
 
     private Set<Comment> comments;
 

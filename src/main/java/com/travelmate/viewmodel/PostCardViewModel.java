@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class AdvertisementCardViewModel {
+public class PostCardViewModel {
     @Id
     private Long id;
 
@@ -39,5 +39,5 @@ public class AdvertisementCardViewModel {
     @Size(max = 500)
     private String infoAboutTravel;
 
-    private String advFileName;
+    private String fileName;
 }
