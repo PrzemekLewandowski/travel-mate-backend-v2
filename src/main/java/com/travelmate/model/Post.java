@@ -1,9 +1,7 @@
 package com.travelmate.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -12,8 +10,11 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Set;
 
-@Data
-@NoArgsConstructor
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter(value = AccessLevel.PACKAGE)
+@Getter
 @Entity
 @Table(name = "posts")
 public class Post extends AbstractEntity {
@@ -24,11 +25,11 @@ public class Post extends AbstractEntity {
 
     @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate travelDateFrom;
+    private LocalDate dateFrom;
 
     @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate travelDateTo;
+    private LocalDate dateTo;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "post_countries",
@@ -62,5 +63,4 @@ public class Post extends AbstractEntity {
     private Set<Comment> comments;
 
     private Boolean isActual = true;
-
 }

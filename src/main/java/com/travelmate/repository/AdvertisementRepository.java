@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface AdvertisementRepository extends JpaRepository<Post, Long>, JpaSpecificationExecutor<Post> {
+
     Optional<List<Post>> findAllByPostedByUsernameIn(List<User> users);
 
     Optional<List<Post>> findAllByIsActualIsTrue();

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Long> {
+
     Country findByCode(String code);
 
     Boolean existsByCode(String code);

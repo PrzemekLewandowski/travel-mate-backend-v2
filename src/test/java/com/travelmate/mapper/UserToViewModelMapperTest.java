@@ -6,6 +6,7 @@ import com.travelmate.model.RoleName;
 import com.travelmate.model.User;
 import com.travelmate.viewmodel.UserViewModel;
 import org.assertj.core.api.WithAssertions;
+import org.assertj.core.api.recursive.comparison.RecursiveComparisonConfiguration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -33,8 +34,6 @@ class UserToViewModelMapperTest implements WithAssertions {
 
     @Test
     void shouldMapUsernameToUserViewModel() {
-        user = createTestUser();
-        userViewModel = UserMapper.INSTANCE.toUserViewModel(user);
         assertThat(user.getUsername()).withFailMessage("Username is wrong").isEqualTo(userViewModel.getUsername());
     }
 
@@ -55,7 +54,12 @@ class UserToViewModelMapperTest implements WithAssertions {
 
     @Test
     void shouldMapPreferredCountriesToUserViewModel() {
-        assertThat(user.getPreferredCountries()).withFailMessage("Countries are wrong").isEqualTo(userViewModel.getPreferredCountries());
+        RecursiveComparisonConfiguration configuration = RecursiveComparisonConfiguration.builder()
+                .withIgnoredFields("id", "createdAt", "updatedAt")
+                .build();
+        assertThat(user.getPreferredCountries())
+                .usingRecursiveComparison(configuration)
+                .isEqualTo(userViewModel.getPreferredCountries());
     }
 
     @Test
@@ -65,33 +69,36 @@ class UserToViewModelMapperTest implements WithAssertions {
 
     @Test
     void shouldMapBudgetValueFromToUserViewModel() {
-        assertThat(user.getBudgetValueFrom()).withFailMessage("Budget value from is wrong").isEqualTo(userViewModel.getBudgetValueFrom());
+        assertThat(user.getBudgetValueFrom()).withFailMessage("Budget value from is wrong")
+                .isEqualTo(userViewModel.getBudgetValueFrom());
     }
 
     @Test
     void shouldMapBudgetValueToToUserViewModel() {
-        assertThat(user.getBudgetValueTo()).withFailMessage("Budget value to is wrong").isEqualTo(userViewModel.getBudgetValueTo());
+        assertThat(user.getBudgetValueTo()).withFailMessage("Budget value to is wrong")
+                .isEqualTo(userViewModel.getBudgetValueTo());
     }
 
     @Test
     void shouldMapInfoAboutUserToUserViewModel() {
-        assertThat(user.getInfoAboutUser()).withFailMessage("Info about user is wrong").isEqualTo(userViewModel.getInfoAboutUser());
+        assertThat(user.getInfoAboutUser()).withFailMessage("Info about user is wrong")
+                .isEqualTo(userViewModel.getInfoAboutUser());
     }
 
     private User createTestUser() {
-        User user = new User();
-        user.setBornYear(1990);
-        user.setCity("Chicago");
-        user.setEmail("test@gmail.com");
-        user.setBudgetValueFrom(100);
-        user.setBudgetValueTo(10000);
-        user.setRoles(Set.of(new Role(RoleName.ROLE_USER)));
-        user.setUsername("test");
-        user.setName("test");
-        user.setPreferredCountries(Set.of(new Country("Georgia", "GE")));
-        user.setAvatarFileName("test.jpg");
-        user.setInfoAboutUser("something");
-        user.setIsAccountClosed(false);
-        return user;
+        return User.builder()
+                .bornYear(1998)
+                .avatarFileName("avatar.jpg")
+                .budgetValueFrom(1000)
+                .budgetValueTo(5000)
+                .city("Chicago")
+                .infoAboutUser("info")
+                .email("test@test.com")
+                .roles(Set.of(Role.builder().name(RoleName.ROLE_USER).build()))
+                .username("test")
+                .name("test")
+                .preferredCountries(Set.of(Country.builder().name("Georgia").code("GE").build()))
+                .isAccountClosed(false)
+                .build();
     }
 }

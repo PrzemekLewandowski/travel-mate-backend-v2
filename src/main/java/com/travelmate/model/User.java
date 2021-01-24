@@ -1,8 +1,6 @@
 package com.travelmate.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -11,11 +9,15 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 
-@Data
-@NoArgsConstructor
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter(value = AccessLevel.PACKAGE)
+@Getter
 @Entity
 @Table(name = "users")
 public class User extends AbstractEntity {
+
     @NotBlank
     @Size(min = 3, max = 20)
     private String name;
@@ -31,10 +33,8 @@ public class User extends AbstractEntity {
     @Size(min = 3, max = 20)
     private String city;
 
-
     @Size(max = 200)
     private String infoAboutUser = "Napisz coś o sobie.";
-
 
     @NotBlank
     @Size(max = 30)

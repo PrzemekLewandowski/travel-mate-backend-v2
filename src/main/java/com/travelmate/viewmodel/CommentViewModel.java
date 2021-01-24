@@ -7,8 +7,11 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class PostCommentViewModel {
+public class CommentViewModel {
+
     private String username;
+
     private LocalDate postDate;
+
     private String commentText;
 }

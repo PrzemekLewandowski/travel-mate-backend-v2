@@ -2,19 +2,16 @@ package com.travelmate.viewmodel;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.NaturalId;
 
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
 public class CountryViewModel {
 
-    @NaturalId
-    @Size(max = 2)
+    @NotBlank
     private String name;
 
-    @NaturalId
-    @Size(max = 2)
+    @NotBlank
     private String code;
 }
