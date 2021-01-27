@@ -34,5 +34,5 @@ public class PostCardViewModel {
     @Size(max = 500)
     private String infoAboutTravel;
 
-    private String fileName;
+    private String imageFileName;
 }

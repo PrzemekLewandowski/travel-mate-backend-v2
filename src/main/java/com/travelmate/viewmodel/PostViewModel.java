@@ -43,7 +43,7 @@ public class PostViewModel {
 
     private UserViewModel postedByUsername;
 
-    private String fileName;
+    private String imageFileName;
 
     private Set<CommentViewModel> comments;
 

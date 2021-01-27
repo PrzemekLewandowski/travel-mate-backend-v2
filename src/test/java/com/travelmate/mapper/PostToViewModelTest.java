@@ -113,8 +113,8 @@ class PostToViewModelTest implements WithAssertions {
 
     @Test
     void shouldMapFileNameToPostViewModel() {
-        assertThat(post.getFileName()).withFailMessage("File name is wrong.")
-                .isEqualTo(postViewModel.getFileName());
+        assertThat(post.getImageFileName()).withFailMessage("File name is wrong.")
+                .isEqualTo(postViewModel.getImageFileName());
     }
 
     @Test
@@ -144,7 +144,7 @@ class PostToViewModelTest implements WithAssertions {
                         .build()))
                 .infoAboutTravel("info")
                 .postedByUsername(User.builder().username("Przemek").build())
-                .fileName("test.jpg")
+                .imageFileName("test.jpg")
                 .comments(Set.of(Comment.builder().commentText("comment").build()))
                 .isActual(true)
                 .build();
