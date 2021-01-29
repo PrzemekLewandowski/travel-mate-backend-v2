@@ -40,10 +40,11 @@ public class AvatarPhotoStorage implements PhotoStorage {
         }
     }
 
-    private void storeAvatar(MultipartFile file, String newFileName, String oldFileName) throws IOException {
+    protected void storeAvatar(MultipartFile file, String newFileName, String oldFileName) throws IOException {
         if (!oldFileName.equals(DEFAULT_AVATAR)) {
             Files.delete(this.avatarRootLocation.resolve(oldFileName));
         }
         Files.copy(file.getInputStream(), this.avatarRootLocation.resolve(newFileName));
     }
 }
+
