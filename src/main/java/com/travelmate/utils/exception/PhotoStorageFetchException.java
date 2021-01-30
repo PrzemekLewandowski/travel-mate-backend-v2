@@ -1,4 +1,4 @@
-package com.travelmate.exception;
+package com.travelmate.utils.exception;
 
 public class PhotoStorageFetchException extends RuntimeException {
     public PhotoStorageFetchException(Throwable cause) {

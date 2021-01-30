@@ -1,7 +1,7 @@
 package com.travelmate.utils;
 
 import com.travelmate.model.User;
-import com.travelmate.repository.UserRepository;
+import com.travelmate.repository.UserQueryRepository;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ class AvatarPhotoStorageTest implements WithAssertions {
     private User user;
 
     @Mock
-    UserRepository userRepository;
+    UserQueryRepository userQueryRepository;
 
     @Mock
     MultipartFile multipartFile;
@@ -44,9 +44,9 @@ class AvatarPhotoStorageTest implements WithAssertions {
     void shouldStorePhoto() throws Exception {
         // given
         when(multipartFile.getOriginalFilename()).thenReturn("originalfilename.jpg");
-        when(userRepository.findByUsername("username")).thenReturn(Optional.of(user));
+        when(userQueryRepository.findByUsername("username")).thenReturn(Optional.of(user));
         when(user.getAvatarFileName()).thenReturn("default-avatar.png");
-        AvatarPhotoStorage photoStorage = new AvatarPhotoStorage(userRepository);
+        AvatarPhotoStorage photoStorage = new AvatarPhotoStorage(userQueryRepository);
         AvatarPhotoStorage spyPhotoStorage = Mockito.spy(photoStorage);
         Mockito.doNothing().when(spyPhotoStorage).storeAvatar(any(MultipartFile.class), anyString(), anyString());
 

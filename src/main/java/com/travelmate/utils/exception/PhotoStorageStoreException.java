@@ -1,4 +1,4 @@
-package com.travelmate.exception;
+package com.travelmate.utils.exception;
 
 public class PhotoStorageStoreException extends RuntimeException {
     public PhotoStorageStoreException(String message) {

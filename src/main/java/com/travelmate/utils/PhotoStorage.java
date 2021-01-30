@@ -1,6 +1,6 @@
 package com.travelmate.utils;
 
-import com.travelmate.exception.PhotoStorageFetchException;
+import com.travelmate.utils.exception.PhotoStorageFetchException;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +15,7 @@ public interface PhotoStorage {
 
     String storePhoto(MultipartFile file, String id);
 
-    default Resource loadPhoto(String filename, Path rootLocation) {
+    default Resource loadPhoto(String filename, Path rootLocation) throws PhotoStorageFetchException {
         try {
             Path file = rootLocation.resolve(filename);
             Resource resource = new UrlResource(file.toUri());

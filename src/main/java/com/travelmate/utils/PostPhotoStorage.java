@@ -1,6 +1,6 @@
 package com.travelmate.utils;
 
-import com.travelmate.exception.PhotoStorageStoreException;
+import com.travelmate.utils.exception.PhotoStorageStoreException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class PostPhotoStorage implements PhotoStorage {
     }
 
     @Override
-    public String storePhoto(MultipartFile file, String name) {
+    public String storePhoto(MultipartFile file, String name) throws PhotoStorageStoreException {
         int localDateTime = LocalDateTime.now().getSecond();
         String originalFileName = Optional.ofNullable(file.getOriginalFilename())
                 .orElseThrow(() -> new PhotoStorageStoreException("Can't read original file name."));
