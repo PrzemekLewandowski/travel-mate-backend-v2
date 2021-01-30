@@ -1,4 +1,4 @@
-package com.travelmate.service;
+package com.travelmate.utils;
 
 import com.travelmate.model.User;
 import com.travelmate.repository.UserRepository;
@@ -56,7 +56,5 @@ class AvatarPhotoStorageTest implements WithAssertions {
         // then
         assertThat(fileName).isNotNull();
         assertThat(fileName).isEqualTo("username.jpg");
-
-
     }
 }

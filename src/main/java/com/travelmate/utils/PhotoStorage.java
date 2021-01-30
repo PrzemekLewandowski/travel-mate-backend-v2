@@ -1,4 +1,4 @@
-package com.travelmate.service;
+package com.travelmate.utils;
 
 import com.travelmate.exception.PhotoStorageFetchException;
 import org.springframework.core.io.Resource;
@@ -10,8 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public interface PhotoStorage {
-    String IMAGES = "src/main/resources/images";
-    Path photoRootLocation = Paths.get(IMAGES);
+    String IMAGES_PATH = "src/main/resources/images";
+    Path photoRootLocation = Paths.get(IMAGES_PATH);
 
     String storePhoto(MultipartFile file, String id);
 
@@ -28,4 +28,6 @@ public interface PhotoStorage {
             throw new PhotoStorageFetchException(e);
         }
     }
+
+
 }

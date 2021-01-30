@@ -1,4 +1,4 @@
-package com.travelmate.service;
+package com.travelmate.utils;
 
 import com.travelmate.exception.PhotoStorageStoreException;
 import com.travelmate.model.User;

@@ -1,4 +1,4 @@
-package com.travelmate.service;
+package com.travelmate.utils;
 
 import com.travelmate.exception.PhotoStorageStoreException;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,12 +19,12 @@ public class PostPhotoStorage implements PhotoStorage {
     }
 
     @Override
-    public String storePhoto(MultipartFile file, String photoTitle) {
-        String localDateTime = LocalDateTime.now().toString();
+    public String storePhoto(MultipartFile file, String name) {
+        int localDateTime = LocalDateTime.now().getSecond();
         String originalFileName = Optional.ofNullable(file.getOriginalFilename())
                 .orElseThrow(() -> new PhotoStorageStoreException("Can't read original file name."));
         String fileExtension = originalFileName.split("\\.")[1];
-        String storedFileName = photoTitle + localDateTime + "." + fileExtension;
+        String storedFileName = name + localDateTime + "." + fileExtension;
         try {
             Files.copy(file.getInputStream(), this.postImageRootLocation.resolve(storedFileName));
             return storedFileName;
