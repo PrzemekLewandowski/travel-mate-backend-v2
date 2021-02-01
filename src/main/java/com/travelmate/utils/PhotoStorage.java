@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public interface PhotoStorage {
-    String IMAGES_PATH = "src/main/resources/images";
+    String IMAGES_PATH = "images/";
     Path photoRootLocation = Paths.get(IMAGES_PATH);
 
     String storePhoto(MultipartFile file, String id);
