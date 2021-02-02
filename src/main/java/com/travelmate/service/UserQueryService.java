@@ -20,11 +20,12 @@ public class UserQueryService {
     private final UserMapper userMapper;
 
     public ResponseEntity<UserViewModel> getCurrentUser(Authentication authentication) {
-        String currentUserName = authentication.getName();
-        Optional<User> user = userQueryRepository.findByUsername(currentUserName);
-        if (user.isEmpty()) {
-            throw new UserNotFoundException(String.format("Didn't found user with username: %s", currentUserName));
-        }
-        return new ResponseEntity<>(userMapper.toUserViewModel(user.get()), HttpStatus.OK);
+        Authentication currentUser = Optional.ofNullable(authentication)
+                .orElseThrow(() -> new UserNotFoundException("Didn't found user"));
+        String currentUserName = currentUser.getName();
+
+        User user = userQueryRepository.findByUsername(currentUserName)
+                .orElseThrow(() -> new UserNotFoundException(String.format("Didn't found user with username: %s", currentUserName)));
+        return new ResponseEntity<>(userMapper.toUserViewModel(user), HttpStatus.OK);
     }
 }
