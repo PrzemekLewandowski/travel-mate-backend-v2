@@ -1,6 +1,6 @@
 package com.travelmate.controller;
 
-import com.travelmate.service.AuthenticationService;
+import com.travelmate.service.AuthenticationCommandService;
 import com.travelmate.viewmodel.SignUpForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +14,10 @@ import javax.validation.Valid;
 @RequestMapping("/api/auth")
 public class AuthenticationCommandRestController {
 
-    private final AuthenticationService authenticationService;
+    private final AuthenticationCommandService authenticationCommandService;
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
-        return authenticationService.registerUser(signUpRequest);
+        return authenticationCommandService.registerUser(signUpRequest);
     }
 }

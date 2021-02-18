@@ -1,6 +1,7 @@
 package com.travelmate.mapper;
 
 import com.travelmate.model.User;
+import com.travelmate.viewmodel.SignUpForm;
 import com.travelmate.viewmodel.UserViewModel;
 import org.mapstruct.Mapper;
 
@@ -8,4 +9,5 @@ import org.mapstruct.Mapper;
 public interface UserMapper {
 
     UserViewModel toUserViewModel(User user);
+    User toUser(SignUpForm signUpForm);
 }

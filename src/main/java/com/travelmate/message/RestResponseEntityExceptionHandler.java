@@ -1,5 +1,7 @@
 package com.travelmate.message;
 
+import com.travelmate.service.exception.RoleNotFoundException;
+import com.travelmate.service.exception.SignUpRequestValidationException;
 import com.travelmate.service.exception.UserNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,11 +15,18 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value
-            = {UserNotFoundException.class})
-    protected ResponseEntity<Object> handleNotFound(
+            = {UserNotFoundException.class, RoleNotFoundException.class})
+    protected ResponseEntity<Object> handleNotFoundException(
             RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "Didn't found data";
-        return handleExceptionInternal(ex, bodyOfResponse,
+        return handleExceptionInternal(ex, ex.getMessage(),
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
+    @ExceptionHandler(value
+            = {SignUpRequestValidationException.class})
+    protected ResponseEntity<Object> handleSignUpRequestValidationException(
+            RuntimeException ex, WebRequest request) {
+        return handleExceptionInternal(ex, ex.getMessage(),
+                new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 }

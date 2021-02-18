@@ -1,5 +1,7 @@
 package com.travelmate.viewmodel;
 
+import com.travelmate.model.Role;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +14,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Builder
 public class SignUpForm {
     @NotBlank
     @Size(min = 3, max = 50)
@@ -29,14 +32,13 @@ public class SignUpForm {
     @Size(max = 60)
     @Email
     private String email;
-    
-    private Set<String> role;
+
+    private Set<Role> roles;
 
     @NotNull
     private int bornYear;
-    
+
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
-
 }
