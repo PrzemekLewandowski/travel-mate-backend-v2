@@ -1,8 +1,6 @@
 package com.travelmate.mapper;
 
-import com.travelmate.model.Country;
-import com.travelmate.model.Role;
-import com.travelmate.model.RoleName;
+import com.travelmate.TestFixture;
 import com.travelmate.model.User;
 import com.travelmate.viewmodel.UserViewModel;
 import org.assertj.core.api.WithAssertions;
@@ -14,8 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.Set;
 
 import static org.junit.jupiter.api.TestInstance.Lifecycle;
 
@@ -31,7 +27,7 @@ class UserToViewModelMapperTest implements WithAssertions {
 
     @BeforeAll
     void setUp() {
-        user = createTestUser();
+        user = TestFixture.getUser();
         userViewModel = userMapper.toUserViewModel(user);
     }
 
@@ -87,22 +83,5 @@ class UserToViewModelMapperTest implements WithAssertions {
     void shouldMapInfoAboutUserToUserViewModel() {
         assertThat(user.getInfoAboutUser()).withFailMessage("Info about user is wrong")
                 .isEqualTo(userViewModel.getInfoAboutUser());
-    }
-
-    private User createTestUser() {
-        return User.builder()
-                .bornYear(1998)
-                .avatarFileName("avatar.jpg")
-                .budgetValueFrom(1000)
-                .budgetValueTo(5000)
-                .city("Chicago")
-                .infoAboutUser("info")
-                .email("test@test.com")
-                .roles(Set.of(Role.builder().name(RoleName.ROLE_USER).build()))
-                .username("test")
-                .name("test")
-                .preferredCountries(Set.of(Country.builder().name("Georgia").code("GE").build()))
-                .isAccountClosed(false)
-                .build();
     }
 }

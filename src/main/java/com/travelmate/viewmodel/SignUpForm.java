@@ -1,5 +1,6 @@
 package com.travelmate.viewmodel;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.travelmate.model.Role;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -39,6 +41,20 @@ public class SignUpForm {
     private int bornYear;
 
     @NotBlank
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Size(min = 6, max = 40)
     private String password;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SignUpForm that = (SignUpForm) o;
+        return username.equals(that.username) && email.equals(that.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, email);
+    }
 }

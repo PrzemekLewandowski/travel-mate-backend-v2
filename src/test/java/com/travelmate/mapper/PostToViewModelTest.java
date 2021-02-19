@@ -1,7 +1,6 @@
 package com.travelmate.mapper;
 
-import com.travelmate.model.Comment;
-import com.travelmate.model.Country;
+import com.travelmate.TestFixture;
 import com.travelmate.model.Post;
 import com.travelmate.model.User;
 import com.travelmate.viewmodel.PostViewModel;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,7 +30,7 @@ class PostToViewModelTest implements WithAssertions {
 
     @BeforeAll
     void setUp() {
-        post = createTestPost();
+        post = TestFixture.getPost();
         postViewModel = postMapper.toPostViewModel(post);
     }
 
@@ -124,33 +122,5 @@ class PostToViewModelTest implements WithAssertions {
     @Test
     void shouldMapIsActualToPostViewModel() {
         assertThat(post.getIsActual()).isEqualTo(postViewModel.getIsActual());
-    }
-
-    private Post createTestPost() {
-        return Post.builder()
-                .budgetValueFrom(1000)
-                .budgetValueTo(4111)
-                .title("title")
-                .dateFrom(LocalDate.now())
-                .dateTo(LocalDate.now().plusDays(3))
-                .countries(Set.of(
-                        Country.builder()
-                                .name("Poland")
-                                .code("PL")
-                                .build(),
-                        Country.builder()
-                                .name("Russia")
-                                .code("RU")
-                                .build()))
-                .maxNumberOfParticipants(5)
-                .enrolledParticipants(Set.of(User.builder().username("Tomek").build(), User.builder()
-                        .username("Ania")
-                        .build()))
-                .infoAboutTravel("info")
-                .postedByUsername(User.builder().username("Przemek").build())
-                .imageFileName("test.jpg")
-                .comments(Set.of(Comment.builder().commentText("comment").build()))
-                .isActual(true)
-                .build();
     }
 }
