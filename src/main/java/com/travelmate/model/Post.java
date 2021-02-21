@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -19,15 +16,11 @@ import java.util.Set;
 @Table(name = "posts")
 public class Post extends AbstractEntity {
 
-    @NotBlank
-    @Size(min = 3, max = 30)
     private String title;
 
-    @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateFrom;
 
-    @NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateTo;
 
@@ -37,20 +30,15 @@ public class Post extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "country_id"))
     private Set<Country> countries;
 
-    @NotBlank
     private int budgetValueFrom;
 
-    @NotBlank
     private int budgetValueTo;
 
-    @NotBlank
     private int maxNumberOfParticipants;
 
     @ManyToMany(mappedBy = "enrolledPosts")
     private Set<User> enrolledParticipants;
 
-    @NotBlank
-    @Size(max = 500)
     private String infoAboutTravel;
 
     @ManyToOne

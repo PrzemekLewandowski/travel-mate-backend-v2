@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class UserViewModel {
     @Size(min = 3, max = 50)
     private String username;
 
-    @NotBlank
+    @NotNull
     private int bornYear;
 
     @NotBlank

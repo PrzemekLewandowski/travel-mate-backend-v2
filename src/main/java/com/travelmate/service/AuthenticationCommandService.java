@@ -35,7 +35,7 @@ public class AuthenticationCommandService {
 
     @Transactional
     public ResponseEntity<String> registerUser(SignUpForm signUpRequest) {
-        validateRequest(signUpRequest);
+        validateSignUpRequest(signUpRequest);
         User user = createUser(signUpRequest);
         userCommandRepository.save(user);
         return new ResponseEntity<>("Rejestracja przebiegła pomyślnie.", HttpStatus.CREATED);
@@ -49,7 +49,7 @@ public class AuthenticationCommandService {
         return userMapper.toUser(signUpRequest);
     }
 
-    private void validateRequest(SignUpForm signUpRequest) {
+    private void validateSignUpRequest(SignUpForm signUpRequest) {
         if (Boolean.TRUE.equals(userQueryRepository.existsByUsername(signUpRequest.getUsername()))) {
             throw new SignUpRequestValidationException("Podana nazwa użytkownika jest już zajęta.");
         } else if (Boolean.TRUE.equals(userQueryRepository.existsByEmail(signUpRequest.getEmail()))) {

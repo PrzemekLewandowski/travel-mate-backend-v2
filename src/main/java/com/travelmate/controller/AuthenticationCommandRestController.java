@@ -17,7 +17,7 @@ public class AuthenticationCommandRestController {
     private final AuthenticationCommandService authenticationCommandService;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
+    public ResponseEntity<String> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
         return authenticationCommandService.registerUser(signUpRequest);
     }
 }

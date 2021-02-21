@@ -3,9 +3,6 @@ package com.travelmate.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.Set;
 
 
@@ -18,31 +15,18 @@ import java.util.Set;
 @Table(name = "users")
 public class User extends AbstractEntity {
 
-    @NotBlank
-    @Size(min = 3, max = 20)
     private String name;
 
-    @NotBlank
-    @Size(min = 3, max = 20)
     private String username;
 
-    @NotBlank
     private int bornYear;
 
-    @NotBlank
-    @Size(min = 3, max = 20)
     private String city;
 
-    @Size(max = 200)
     private String infoAboutUser = "Napisz coś o sobie.";
 
-    @NotBlank
-    @Size(max = 30)
-    @Email
     private String email;
 
-    @NotBlank
-    @Size(min = 6, max = 30)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
