@@ -53,7 +53,7 @@ public class AuthenticationCommandService {
         if (Boolean.TRUE.equals(userQueryRepository.existsByUsername(signUpRequest.getUsername()))) {
             throw new SignUpRequestValidationException("Podana nazwa użytkownika jest już zajęta.");
         } else if (Boolean.TRUE.equals(userQueryRepository.existsByEmail(signUpRequest.getEmail()))) {
-            throw new SignUpRequestValidationException("Podana email jest już używany.");
+            throw new SignUpRequestValidationException("Podany email jest już używany.");
         } else if (signUpRequest.getBornYear() >= MIN_YEAR_OF_BIRTH || signUpRequest.getBornYear() <= MAX_YEAR_OF_BIRTH) {
             throw new SignUpRequestValidationException(String.format("Podany rok urodzenia musi mieścić się w przedziale %d-%d", MAX_YEAR_OF_BIRTH, MIN_YEAR_OF_BIRTH));
         }

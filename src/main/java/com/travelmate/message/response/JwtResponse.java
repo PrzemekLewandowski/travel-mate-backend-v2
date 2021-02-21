@@ -1,54 +1,25 @@
 package com.travelmate.message.response;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
+@Getter
+@RequiredArgsConstructor
 public class JwtResponse {
-    private String token;
-    private String type = "Bearer";
-    private String username;
+    private static final String TYPE = "Bearer";
+    private final String token;
+    private final String username;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public JwtResponse(String accessToken, String username, Collection<? extends GrantedAuthority> authorities) {
-        this.token = accessToken;
-        this.username = username;
-        this.authorities = authorities;
-    }
-
-    public String getAccessToken() {
-        return token;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.token = accessToken;
-    }
-
-    public String getTokenType() {
-        return type;
-    }
-
-    public void setTokenType(String tokenType) {
-        this.type = tokenType;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
 
     @Override
     public String toString() {
         return "JwtResponse{" +
                 "token='" + token + '\'' +
-                ", type='" + type + '\'' +
+                ", type='" + TYPE + '\'' +
                 ", username='" + username + '\'' +
                 ", authorities=" + authorities +
                 '}';

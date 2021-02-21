@@ -9,5 +9,8 @@ import org.mapstruct.Mapper;
 public interface UserMapper {
 
     UserViewModel toUserViewModel(User user);
+
     User toUser(SignUpForm signUpForm);
+
+    User toUser(UserViewModel userViewModel);
 }

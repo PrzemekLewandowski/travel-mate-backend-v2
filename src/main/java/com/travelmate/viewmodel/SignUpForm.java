@@ -28,7 +28,7 @@ public class SignUpForm {
 
     @NotBlank
     @Size(min = 3, max = 50)
-    private String address;
+    private String city;
 
     @NotBlank
     @Size(max = 60)

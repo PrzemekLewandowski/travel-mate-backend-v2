@@ -23,6 +23,7 @@ public class User extends AbstractEntity {
 
     private String city;
 
+    @Builder.Default
     private String infoAboutUser = "Napisz coś o sobie.";
 
     private String email;
@@ -52,11 +53,15 @@ public class User extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @Builder.Default
     private String avatarFileName = "default-avatar.png";
 
+    @Builder.Default
     private int budgetValueFrom = 0;
 
+    @Builder.Default
     private int budgetValueTo = 10000;
 
+    @Builder.Default
     private Boolean isAccountClosed = false;
 }
