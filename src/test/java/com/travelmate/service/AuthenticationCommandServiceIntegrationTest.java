@@ -16,7 +16,7 @@ import javax.transaction.Transactional;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Transactional
-class AuthenticationCommandServiceTest implements WithAssertions {
+class AuthenticationCommandServiceIntegrationTest implements WithAssertions {
 
     @Autowired
     private AuthenticationCommandService authenticationCommandService;

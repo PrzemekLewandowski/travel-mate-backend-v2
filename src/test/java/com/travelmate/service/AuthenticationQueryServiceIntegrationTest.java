@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @Transactional
-class AuthenticationQueryServiceTest implements WithAssertions {
+class AuthenticationQueryServiceIntegrationTest implements WithAssertions {
 
     @Autowired
     private AuthenticationQueryService authenticationQueryService;
