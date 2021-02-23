@@ -2,7 +2,7 @@ package com.travelmate.service;
 
 import com.travelmate.TestFixture;
 import com.travelmate.mapper.UserMapper;
-import com.travelmate.model.RoleName;
+import com.travelmate.message.response.JwtResponse;
 import com.travelmate.model.User;
 import com.travelmate.repository.UserCommandRepository;
 import com.travelmate.service.command.AuthenticationCommandService;
@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.transaction.Transactional;
 
@@ -49,12 +50,14 @@ class AuthenticationQueryServiceIntegrationTest implements WithAssertions {
         authenticationCommandService.registerUser(signUpForm);
 
         // when
-        ResponseEntity<String> responseEntity = authenticationQueryService.authenticateUser(TestFixture.getLoginForm());
+        ResponseEntity<JwtResponse> responseEntity = authenticationQueryService.authenticateUser(TestFixture.getLoginForm());
 
         // then
         assertThat(responseEntity).isNotNull();
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).contains(RoleName.ROLE_USER.toString());
+        assertThat(responseEntity.getBody()).isNotNull();
+        assertThat(responseEntity.getBody().getUsername()).isEqualTo("Username");
+        assertThat(responseEntity.getBody().getAuthorities().stream().map(GrantedAuthority::getAuthority)).containsOnly("ROLE_USER");
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.travelmate.controller.query;
 
+import com.travelmate.message.response.JwtResponse;
 import com.travelmate.service.query.AuthenticationQueryService;
 import com.travelmate.viewmodel.LoginForm;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class AuthenticationQueryRestController {
     private final AuthenticationQueryService authenticationQueryService;
 
     @PostMapping("/signin")
-    public ResponseEntity<String> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
+    public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
         return authenticationQueryService.authenticateUser(loginRequest);
     }
 }

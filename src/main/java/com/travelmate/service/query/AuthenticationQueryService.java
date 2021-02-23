@@ -26,7 +26,7 @@ public class AuthenticationQueryService {
     private final JwtProvider jwtProvider;
 
     @Transactional(readOnly = true)
-    public ResponseEntity<String> authenticateUser(LoginForm loginRequest) {
+    public ResponseEntity<JwtResponse> authenticateUser(LoginForm loginRequest) {
         String username = loginRequest.getUsername();
         Optional<User> userOptional = userQueryRepository.findByUsername(username);
 
@@ -47,7 +47,6 @@ public class AuthenticationQueryService {
 
         String jsonWebToken = jwtProvider.generateJwtToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        JwtResponse jwtResponse = new JwtResponse(jsonWebToken, userDetails.getUsername(), userDetails.getAuthorities());
-        return new ResponseEntity<>(jwtResponse.toString(), HttpStatus.OK);
+        return new ResponseEntity<>(new JwtResponse(jsonWebToken, userDetails.getUsername(), userDetails.getAuthorities()), HttpStatus.OK);
     }
 }

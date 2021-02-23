@@ -13,15 +13,4 @@ public class JwtResponse {
     private final String token;
     private final String username;
     private final Collection<? extends GrantedAuthority> authorities;
-
-
-    @Override
-    public String toString() {
-        return "JwtResponse{" +
-                "token='" + token + '\'' +
-                ", type='" + TYPE + '\'' +
-                ", username='" + username + '\'' +
-                ", authorities=" + authorities +
-                '}';
-    }
 }
