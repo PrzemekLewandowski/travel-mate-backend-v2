@@ -2,13 +2,17 @@ package com.travelmate.viewmodel;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.travelmate.model.Country;
-import lombok.Data;
-import org.springframework.stereotype.Component;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Component
-@Data
+@Getter
+@Setter
+@Builder
+@EqualsAndHashCode
 public class PostSearchCriteriaViewModel {
 
     private Country country;

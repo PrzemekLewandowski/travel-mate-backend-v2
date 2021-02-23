@@ -17,6 +17,7 @@ public class User extends AbstractEntity {
 
     private String name;
 
+    @Column(updatable = false)
     private String username;
 
     private int bornYear;
@@ -56,12 +57,10 @@ public class User extends AbstractEntity {
     @Builder.Default
     private String avatarFileName = "default-avatar.png";
 
-    @Builder.Default
-    private int budgetValueFrom = 0;
+    private int budgetValueFrom;
 
     @Builder.Default
     private int budgetValueTo = 10000;
 
-    @Builder.Default
-    private Boolean isAccountClosed = false;
+    private boolean isAccountClosed;
 }

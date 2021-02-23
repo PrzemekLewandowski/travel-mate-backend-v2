@@ -3,6 +3,7 @@ package com.travelmate.viewmodel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.travelmate.model.Role;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
+@EqualsAndHashCode
 public class SignUpForm {
     @NotBlank
     @Size(min = 3, max = 50)

@@ -1,4 +1,4 @@
-package com.travelmate.controller;
+package com.travelmate.controller.command;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;

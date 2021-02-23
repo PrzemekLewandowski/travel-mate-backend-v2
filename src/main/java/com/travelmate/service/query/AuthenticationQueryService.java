@@ -1,4 +1,4 @@
-package com.travelmate.service;
+package com.travelmate.service.query;
 
 import com.travelmate.message.response.JwtResponse;
 import com.travelmate.model.User;
@@ -34,7 +34,7 @@ public class AuthenticationQueryService {
             throw new AuthenticationCredentialsNotFoundException(String.format("Użytkownik %s nie istnieje.", username));
         }
         User user = userOptional.get();
-        if (Boolean.TRUE.equals(user.getIsAccountClosed())) {
+        if (user.isAccountClosed()) {
             throw new LockedException("Konto jest zamknięte.");
         }
 

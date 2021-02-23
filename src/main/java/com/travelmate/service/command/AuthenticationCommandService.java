@@ -1,4 +1,4 @@
-package com.travelmate.service;
+package com.travelmate.service.command;
 
 import com.travelmate.mapper.UserMapper;
 import com.travelmate.model.Role;

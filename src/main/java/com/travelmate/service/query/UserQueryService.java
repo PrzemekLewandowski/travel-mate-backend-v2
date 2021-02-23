@@ -1,4 +1,4 @@
-package com.travelmate.service;
+package com.travelmate.service.query;
 
 import com.travelmate.mapper.UserMapper;
 import com.travelmate.model.User;

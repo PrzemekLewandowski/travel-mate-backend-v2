@@ -5,6 +5,8 @@ import com.travelmate.mapper.UserMapper;
 import com.travelmate.model.RoleName;
 import com.travelmate.model.User;
 import com.travelmate.repository.UserCommandRepository;
+import com.travelmate.service.command.AuthenticationCommandService;
+import com.travelmate.service.query.AuthenticationQueryService;
 import com.travelmate.viewmodel.LoginForm;
 import com.travelmate.viewmodel.SignUpForm;
 import com.travelmate.viewmodel.UserViewModel;

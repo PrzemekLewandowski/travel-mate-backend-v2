@@ -1,6 +1,7 @@
 package com.travelmate.service;
 
 import com.travelmate.TestFixture;
+import com.travelmate.service.command.AuthenticationCommandService;
 import com.travelmate.service.exception.SignUpRequestValidationException;
 import com.travelmate.viewmodel.SignUpForm;
 import org.assertj.core.api.WithAssertions;

@@ -1,6 +1,6 @@
-package com.travelmate.controller;
+package com.travelmate.controller.query;
 
-import com.travelmate.service.UserQueryService;
+import com.travelmate.service.query.UserQueryService;
 import com.travelmate.viewmodel.UserViewModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

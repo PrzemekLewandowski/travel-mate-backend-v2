@@ -1,6 +1,6 @@
-package com.travelmate.controller;
+package com.travelmate.controller.command;
 
-import com.travelmate.service.AuthenticationCommandService;
+import com.travelmate.service.command.AuthenticationCommandService;
 import com.travelmate.viewmodel.SignUpForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
