@@ -3,16 +3,12 @@ package com.travelmate.viewmodel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.travelmate.model.Country;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 @Builder
-@EqualsAndHashCode
 public class PostSearchCriteriaViewModel {
 
     private Country country;

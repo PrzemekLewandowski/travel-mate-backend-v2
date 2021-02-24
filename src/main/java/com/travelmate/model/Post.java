@@ -50,5 +50,9 @@ public class Post extends AbstractEntity {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Comment> comments;
 
-    private Boolean isActual = true;
+    private boolean active = true;
+
+    public void setPostToInactive(){
+        this.active = false;
+    }
 }

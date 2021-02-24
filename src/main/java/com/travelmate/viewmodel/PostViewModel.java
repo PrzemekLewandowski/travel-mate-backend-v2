@@ -2,19 +2,15 @@ package com.travelmate.viewmodel;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @Builder
-@EqualsAndHashCode
 public class PostViewModel {
 
     private Long id;
@@ -51,5 +47,5 @@ public class PostViewModel {
 
     private Set<CommentViewModel> comments;
 
-    private Boolean isActual;
+    private boolean active;
 }

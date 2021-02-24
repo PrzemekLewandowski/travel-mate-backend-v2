@@ -74,7 +74,7 @@ public final class TestFixture {
                 .postedByUsername(getUser())
                 .imageFileName(IMAGE_FILE_NAME)
                 .comments(Set.of(Comment.builder().commentText(COMMENT_TEXT).build()))
-                .isActual(true)
+                .active(true)
                 .build();
     }
 

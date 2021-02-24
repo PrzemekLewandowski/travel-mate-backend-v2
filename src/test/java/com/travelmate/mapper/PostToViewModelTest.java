@@ -3,6 +3,7 @@ package com.travelmate.mapper;
 import com.travelmate.TestFixture;
 import com.travelmate.model.Post;
 import com.travelmate.model.User;
+import com.travelmate.viewmodel.CommentViewModel;
 import com.travelmate.viewmodel.PostViewModel;
 import com.travelmate.viewmodel.UserViewModel;
 import org.assertj.core.api.WithAssertions;
@@ -78,12 +79,14 @@ class PostToViewModelTest implements WithAssertions {
 
     @Test
     void shouldMapCommentsToPostViewModel() {
+        Set<CommentViewModel> viewModelComments = postViewModel.getComments();
+        assertThat(viewModelComments).hasOnlyElementsOfType(CommentViewModel.class);
         RecursiveComparisonConfiguration configuration = RecursiveComparisonConfiguration.builder()
                 .withIgnoredFields("id", "createdAt", "updatedAt", "post")
                 .build();
         assertThat(post.getComments())
                 .usingRecursiveComparison(configuration)
-                .isEqualTo(postViewModel.getComments());
+                .isEqualTo(viewModelComments);
     }
 
     @Test
@@ -120,7 +123,7 @@ class PostToViewModelTest implements WithAssertions {
     }
 
     @Test
-    void shouldMapIsActualToPostViewModel() {
-        assertThat(post.getIsActual()).isEqualTo(postViewModel.getIsActual());
+    void shouldMapActiveToPostViewModel() {
+        assertThat(post.isActive()).isEqualTo(postViewModel.isActive());
     }
 }

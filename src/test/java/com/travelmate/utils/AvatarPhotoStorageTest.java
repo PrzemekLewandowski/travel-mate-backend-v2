@@ -7,9 +7,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +24,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS)
+@ExtendWith(MockitoExtension.class)
 class AvatarPhotoStorageTest implements WithAssertions {
     @Mock
     private User user;

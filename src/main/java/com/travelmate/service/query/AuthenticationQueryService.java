@@ -47,6 +47,11 @@ public class AuthenticationQueryService {
 
         String jsonWebToken = jwtProvider.generateJwtToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        return new ResponseEntity<>(new JwtResponse(jsonWebToken, userDetails.getUsername(), userDetails.getAuthorities()), HttpStatus.OK);
+        JwtResponse jwtResponse = JwtResponse.builder()
+                .token(jsonWebToken)
+                .username(userDetails.getUsername())
+                .authorities(userDetails.getAuthorities())
+                .build();
+        return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
     }
 }

@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 @ExtendWith({SpringExtension.class})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class PostPhotoStorageTest implements WithAssertions {
+class PostPhotoStorageTest implements WithAssertions {
 
     @Mock
     MultipartFile multipartFile;

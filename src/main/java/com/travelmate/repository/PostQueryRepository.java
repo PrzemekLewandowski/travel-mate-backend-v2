@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
-public interface AdvertisementRepository extends JpaRepository<Post, Long>, JpaSpecificationExecutor<Post> {
+public interface PostQueryRepository extends JpaRepository<Post, Long>, JpaSpecificationExecutor<Post> {
 
-    List<Post> findAllByPostedByUsernameIn(List<User> users);
+    Set<Post> findAllByPostedByUsernameIn(List<User> users);
 
-    List<Post> findAllByIsActualIsTrue();
+    Set<Post> findAllByActiveIsTrue();
 }
