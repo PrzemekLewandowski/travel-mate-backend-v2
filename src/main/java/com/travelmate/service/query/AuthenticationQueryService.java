@@ -26,7 +26,7 @@ public class AuthenticationQueryService {
     private final JwtProvider jwtProvider;
 
     @Transactional(readOnly = true)
-    public ResponseEntity<JwtResponse> authenticateUser(LoginForm loginRequest) {
+    public ResponseEntity<JwtResponse> authenticateUserAndGetJwtToken(LoginForm loginRequest) {
         String username = loginRequest.getUsername();
         Optional<User> userOptional = userQueryRepository.findByUsername(username);
 
@@ -45,13 +45,17 @@ public class AuthenticationQueryService {
         }
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        JwtResponse jwtResponse = getJwtResponse(authentication);
+        return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
+    }
+
+    private JwtResponse getJwtResponse(Authentication authentication) {
         String jsonWebToken = jwtProvider.generateJwtToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        JwtResponse jwtResponse = JwtResponse.builder()
+        return JwtResponse.builder()
                 .token(jsonWebToken)
                 .username(userDetails.getUsername())
                 .authorities(userDetails.getAuthorities())
                 .build();
-        return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
     }
 }

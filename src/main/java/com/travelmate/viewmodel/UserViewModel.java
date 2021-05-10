@@ -46,5 +46,13 @@ public class UserViewModel {
 
     private String avatarFileName;
 
-    private Boolean isAccountClosed;
+    private boolean isAccountClosed;
+
+    public void closeAccount(){
+        this.isAccountClosed = true;
+    }
+
+    public void openAccount(){
+        this.isAccountClosed = false;
+    }
 }

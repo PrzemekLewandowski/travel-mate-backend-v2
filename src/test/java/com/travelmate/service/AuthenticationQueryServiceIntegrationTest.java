@@ -50,14 +50,18 @@ class AuthenticationQueryServiceIntegrationTest implements WithAssertions {
         authenticationCommandService.registerUser(signUpForm);
 
         // when
-        ResponseEntity<JwtResponse> responseEntity = authenticationQueryService.authenticateUser(TestFixture.getLoginForm());
+        ResponseEntity<JwtResponse> responseEntity = authenticationQueryService.authenticateUserAndGetJwtToken(TestFixture
+                .getLoginForm());
 
         // then
         assertThat(responseEntity).isNotNull();
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody()).isNotNull();
         assertThat(responseEntity.getBody().getUsername()).isEqualTo("Username");
-        assertThat(responseEntity.getBody().getAuthorities().stream().map(GrantedAuthority::getAuthority)).containsOnly("ROLE_USER");
+        assertThat(responseEntity.getBody()
+                .getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)).containsOnly("ROLE_USER");
     }
 
     @Test
@@ -67,7 +71,7 @@ class AuthenticationQueryServiceIntegrationTest implements WithAssertions {
 
         // when
         Exception exception = assertThrows(AuthenticationCredentialsNotFoundException.class,
-                () -> authenticationQueryService.authenticateUser(loginForm));
+                () -> authenticationQueryService.authenticateUserAndGetJwtToken(loginForm));
 
         // then
         assertThat(exception.getMessage()).isEqualTo("Użytkownik Username1 nie istnieje.");
@@ -78,13 +82,13 @@ class AuthenticationQueryServiceIntegrationTest implements WithAssertions {
         // given
         LoginForm loginForm = TestFixture.getLoginForm();
         UserViewModel userViewModel = TestFixture.getUserViewModel();
-        userViewModel.setIsAccountClosed(true);
         User user = userMapper.toUser(userViewModel);
+        user.closeAccount();
         userCommandRepository.save(user);
 
         // when
         Exception exception = assertThrows(LockedException.class,
-                () -> authenticationQueryService.authenticateUser(loginForm));
+                () -> authenticationQueryService.authenticateUserAndGetJwtToken(loginForm));
 
         // then
         assertThat(exception.getMessage()).isEqualTo("Konto jest zamknięte.");
@@ -100,7 +104,7 @@ class AuthenticationQueryServiceIntegrationTest implements WithAssertions {
 
         // when
         Exception exception = assertThrows(BadCredentialsException.class,
-                () -> authenticationQueryService.authenticateUser(loginForm));
+                () -> authenticationQueryService.authenticateUserAndGetJwtToken(loginForm));
 
         // then
         assertThat(exception.getMessage()).isEqualTo("Złe hasło.");

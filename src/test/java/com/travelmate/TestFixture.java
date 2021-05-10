@@ -1,6 +1,7 @@
 package com.travelmate;
 
 import com.travelmate.model.*;
+import com.travelmate.viewmodel.CountryViewModel;
 import com.travelmate.viewmodel.LoginForm;
 import com.travelmate.viewmodel.SignUpForm;
 import com.travelmate.viewmodel.UserViewModel;
@@ -33,6 +34,8 @@ public final class TestFixture {
     private static final String INFO_ABOUT_USER = "info";
     private static final String COUNTRY_NAME_GEORGIA = "Georgia";
     private static final String COUNTRY_CODE_GEORGIA = "GE";
+    private static final String COUNTRY_NAME_BRAZIL = "Brazil";
+    private static final String COUNTRY_CODE_BRAZIL = "BR";
     private static final boolean IS_ACCOUNT_CLOSED = false;
 
     public static SignUpForm getSignUpForm() {
@@ -118,5 +121,12 @@ public final class TestFixture {
                 .name(NAME)
                 .username(USERNAME)
                 .build();
+    }
+
+    public static Set<CountryViewModel> getCountriesViewModel() {
+        CountryViewModel poland = CountryViewModel.builder().code(COUNTRY_CODE_POLAND).name(COUNTRY_NAME_POLAND).build();
+        CountryViewModel russia = CountryViewModel.builder().code(COUNTRY_CODE_RUSSIA).name(COUNTRY_NAME_RUSSIA).build();
+        CountryViewModel brazil = CountryViewModel.builder().code(COUNTRY_CODE_BRAZIL).name(COUNTRY_NAME_BRAZIL).build();
+        return Set.of(poland, russia, brazil);
     }
 }

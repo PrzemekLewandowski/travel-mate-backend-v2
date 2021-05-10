@@ -63,4 +63,8 @@ public class User extends AbstractEntity {
     private int budgetValueTo = 10000;
 
     private boolean isAccountClosed;
+
+    public void closeAccount() {
+        this.isAccountClosed = true;
+    }
 }

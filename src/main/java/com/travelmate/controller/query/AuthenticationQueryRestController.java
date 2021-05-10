@@ -19,6 +19,6 @@ public class AuthenticationQueryRestController {
 
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
-        return authenticationQueryService.authenticateUser(loginRequest);
+        return authenticationQueryService.authenticateUserAndGetJwtToken(loginRequest);
     }
 }
