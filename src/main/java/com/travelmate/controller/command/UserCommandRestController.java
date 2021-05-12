@@ -14,19 +14,9 @@ import org.springframework.web.bind.annotation.*;
 public class UserCommandRestController {
     private final UserCommandService userCommandService;
 
-//    @PutMapping("/updateInfoAboutUser")
-//    public ResponseEntity<UserViewModel> updateInfoAboutUser(@RequestBody UserViewModel userViewModel) {
-//        return userCommandService.updateInfoAboutUser(userViewModel);
-//    }
-//
-//    @PutMapping("/updateBudgetValue")
-//    public ResponseEntity<UserViewModel> updateBudgetValue(@RequestBody UserViewModel userViewModel) {
-//        return userCommandService.updateBudgetValue(userViewModel);
-//    }
-
-    @PutMapping("/updatePreferredCountries")
-    public ResponseEntity<UserViewModel> updatePreferredCountries(@RequestBody UserViewModel userViewModel) {
-        return userCommandService.updatePreferredCountries(userViewModel);
+    @PutMapping("/update")
+    public ResponseEntity<UserViewModel> update(@RequestBody UserViewModel userViewModel) {
+        return userCommandService.update(userViewModel);
     }
 
     @PutMapping("/closeAccount")

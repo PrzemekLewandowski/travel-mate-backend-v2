@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @RequiredArgsConstructor
+@Transactional
 @Service
 public class UserCommandService {
     private final UserCommandRepository userCommandRepository;
@@ -24,14 +25,12 @@ public class UserCommandService {
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
-    @Transactional
-    public ResponseEntity<UserViewModel> updatePreferredCountries(UserViewModel userViewModel) {
+    public ResponseEntity<UserViewModel> update(UserViewModel userViewModel) {
         User user = userMapper.toUser(userViewModel);
         userCommandRepository.save(user);
         return new ResponseEntity<>(userMapper.toUserViewModel(user), HttpStatus.ACCEPTED);
     }
 
-    @Transactional
     public ResponseEntity<String> closeAccount(Authentication authentication, String password) {
         User user = userQueryRepository.findByUsername(authentication.getName())
                 .orElseThrow(() -> new UserNotFoundException("Nie można znaleźć użytkownika."));

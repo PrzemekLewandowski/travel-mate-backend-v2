@@ -39,7 +39,7 @@ class UserCommandServiceTest implements WithAssertions {
         userViewModel.setPreferredCountries(TestFixture.getCountriesViewModel());
 
         // when
-        ResponseEntity<UserViewModel> responseEntity = userCommandService.updatePreferredCountries(userViewModel);
+        ResponseEntity<UserViewModel> responseEntity = userCommandService.update(userViewModel);
         User updatedUser = userQueryRepository.findByUsername(user.getUsername()).orElse(null);
 
         // then
