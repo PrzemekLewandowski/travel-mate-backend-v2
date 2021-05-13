@@ -74,7 +74,7 @@ public final class TestFixture {
                                 .username(ENROLLED_PARTICIPANT_ANIA)
                                 .build()))
                 .infoAboutTravel(INFO_ABOUT_TRAVEL)
-                .postedByUsername(getUser())
+                .author(getUser())
                 .imageFileName(IMAGE_FILE_NAME)
                 .comments(Set.of(Comment.builder().commentText(COMMENT_TEXT).build()))
                 .active(true)

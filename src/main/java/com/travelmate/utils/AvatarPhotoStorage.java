@@ -5,6 +5,7 @@ import com.travelmate.repository.UserQueryRepository;
 import com.travelmate.utils.exception.PhotoStorageStoreException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
+@Component
 @RequiredArgsConstructor
 public class AvatarPhotoStorage implements PhotoStorage {
     private static final String DEFAULT_AVATAR = "default-avatar.png";
@@ -28,7 +30,7 @@ public class AvatarPhotoStorage implements PhotoStorage {
         String originalFileName = Optional.ofNullable(file.getOriginalFilename())
                 .orElseThrow(() -> new PhotoStorageStoreException("Can't read original file name."));
         String fileExtension = originalFileName.split("\\.")[1];
-        User user = userQueryRepository.findByUsername(name)
+        User user = userQueryRepository.findByUsernameIgnoreCase(name)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("Can't find user with username: %s", name)));
         String newFileName = name + "." + fileExtension;
         String oldFileName = user.getAvatarFileName();

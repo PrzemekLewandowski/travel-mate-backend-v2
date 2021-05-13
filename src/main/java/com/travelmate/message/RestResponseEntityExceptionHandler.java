@@ -54,6 +54,13 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return exception.getMessage();
     }
 
+    @ResponseBody
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.EXPECTATION_FAILED)
+    protected String handleIllegalArgumentException(IllegalArgumentException exception) {
+        return exception.getMessage();
+    }
+
     @Override
     @NonNull
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, @NonNull HttpHeaders headers, @NonNull HttpStatus status, @NonNull WebRequest request) {

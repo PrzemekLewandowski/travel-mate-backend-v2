@@ -28,7 +28,7 @@ public class AuthenticationQueryService {
     @Transactional(readOnly = true)
     public ResponseEntity<JwtResponse> authenticateUserAndGetJwtToken(LoginForm loginRequest) {
         String username = loginRequest.getUsername();
-        Optional<User> userOptional = userQueryRepository.findByUsername(username);
+        Optional<User> userOptional = userQueryRepository.findByUsernameIgnoreCase(username);
 
         if (userOptional.isEmpty()) {
             throw new AuthenticationCredentialsNotFoundException(String.format("Użytkownik %s nie istnieje.", username));

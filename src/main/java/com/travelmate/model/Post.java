@@ -43,7 +43,7 @@ public class Post extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User postedByUsername;
+    private User author;
 
     private String imageFileName;
 

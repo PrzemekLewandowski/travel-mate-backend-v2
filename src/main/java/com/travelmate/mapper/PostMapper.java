@@ -8,4 +8,6 @@ import org.mapstruct.Mapper;
 public interface PostMapper {
 
     PostViewModel toPostViewModel(Post post);
+
+    Post toPost(PostViewModel postViewModel);
 }

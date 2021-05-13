@@ -23,8 +23,7 @@ public class UserQueryService {
         Authentication currentUser = Optional.ofNullable(authentication)
                 .orElseThrow(() -> new UserNotFoundException("Didn't found user"));
         String currentUserName = currentUser.getName();
-
-        User user = userQueryRepository.findByUsername(currentUserName)
+        User user = userQueryRepository.findByUsernameIgnoreCase(currentUserName)
                 .orElseThrow(() -> new UserNotFoundException(String.format("Didn't found user with username: %s", currentUserName)));
         return new ResponseEntity<>(userMapper.toUserViewModel(user), HttpStatus.OK);
     }

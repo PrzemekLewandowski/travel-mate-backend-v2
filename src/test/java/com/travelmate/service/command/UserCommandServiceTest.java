@@ -40,7 +40,7 @@ class UserCommandServiceTest implements WithAssertions {
 
         // when
         ResponseEntity<UserViewModel> responseEntity = userCommandService.update(userViewModel);
-        User updatedUser = userQueryRepository.findByUsername(user.getUsername()).orElse(null);
+        User updatedUser = userQueryRepository.findByUsernameIgnoreCase(user.getUsername()).orElse(null);
 
         // then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.ACCEPTED);

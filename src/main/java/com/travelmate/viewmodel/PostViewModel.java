@@ -41,7 +41,7 @@ public class PostViewModel {
     @Size(max = 500)
     private String infoAboutTravel;
 
-    private UserViewModel postedByUsername;
+    private UserViewModel author;
 
     private String imageFileName;
 

@@ -111,8 +111,8 @@ class PostToViewModelTest implements WithAssertions {
 
     @Test
     void shouldMapPostedByUsernameToPostViewModel() {
-        assertThat(postViewModel.getPostedByUsername()).isInstanceOf(UserViewModel.class);
-        assertThat(post.getPostedByUsername().getUsername()).isEqualTo(postViewModel.getPostedByUsername()
+        assertThat(postViewModel.getAuthor()).isInstanceOf(UserViewModel.class);
+        assertThat(post.getAuthor().getUsername()).isEqualTo(postViewModel.getAuthor()
                 .getUsername());
     }
 

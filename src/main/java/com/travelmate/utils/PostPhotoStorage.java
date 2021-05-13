@@ -1,6 +1,7 @@
 package com.travelmate.utils;
 
 import com.travelmate.utils.exception.PhotoStorageStoreException;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@Component
 public class PostPhotoStorage implements PhotoStorage {
     private static final String POST_IMAGE_PATH = "post";
 

@@ -12,7 +12,7 @@ import java.util.Set;
 @Repository
 public interface PostQueryRepository extends JpaRepository<Post, Long>, JpaSpecificationExecutor<Post> {
 
-    Set<Post> findAllByPostedByUsernameIn(List<User> users);
+    Set<Post> findAllByAuthorIn(List<User> users);
 
     Set<Post> findAllByActiveIsTrue();
 }

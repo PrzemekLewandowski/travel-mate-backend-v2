@@ -45,7 +45,7 @@ public class User extends AbstractEntity {
     )
     private Set<Post> enrolledPosts;
 
-    @OneToMany(mappedBy = "postedByUsername")
+    @OneToMany(mappedBy = "author")
     private Set<Post> posts;
 
     @ManyToMany(fetch = FetchType.LAZY)

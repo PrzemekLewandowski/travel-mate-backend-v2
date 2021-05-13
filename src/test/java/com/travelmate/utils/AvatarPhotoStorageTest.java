@@ -44,7 +44,7 @@ class AvatarPhotoStorageTest implements WithAssertions {
     void shouldStorePhoto() throws Exception {
         // given
         when(multipartFile.getOriginalFilename()).thenReturn("originalfilename.jpg");
-        when(userQueryRepository.findByUsername("username")).thenReturn(Optional.of(user));
+        when(userQueryRepository.findByUsernameIgnoreCase("username")).thenReturn(Optional.of(user));
         when(user.getAvatarFileName()).thenReturn("default-avatar.png");
         AvatarPhotoStorage photoStorage = new AvatarPhotoStorage(userQueryRepository);
         AvatarPhotoStorage spyPhotoStorage = Mockito.spy(photoStorage);

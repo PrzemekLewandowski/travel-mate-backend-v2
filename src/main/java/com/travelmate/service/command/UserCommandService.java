@@ -32,7 +32,7 @@ public class UserCommandService {
     }
 
     public ResponseEntity<String> closeAccount(Authentication authentication, String password) {
-        User user = userQueryRepository.findByUsername(authentication.getName())
+        User user = userQueryRepository.findByUsernameIgnoreCase(authentication.getName())
                 .orElseThrow(() -> new UserNotFoundException("Nie można znaleźć użytkownika."));
 
         if (password == null || !passwordEncoder.matches(password, user.getPassword())) {
